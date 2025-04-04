@@ -4,8 +4,8 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin
 )
-# Create your models here.
 
+# Create your models here.
 class UserManager(BaseUserManager):
     """Manager for users"""
 
@@ -19,6 +19,7 @@ class UserManager(BaseUserManager):
 
         return user
 
+
     def create_superuser(self, email, password):
         """Create an return a new superuser"""
         user = self.create_user(email, password)
@@ -27,6 +28,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
 
         return user
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     """User in the system"""
@@ -38,4 +40,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-
